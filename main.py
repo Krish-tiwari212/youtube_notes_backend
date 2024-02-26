@@ -11,9 +11,10 @@ import google.generativeai as genai
 import json
 from response import send
 from fastapi.middleware.cors import CORSMiddleware
-
+from pytube import extract
 
 load_dotenv()
+
 
 
 
@@ -134,18 +135,14 @@ async def root():
 
 @app.post("/")
 async def generate_material(url: Url):
-    parsed_url = urlparse(url.url)
-    video_id = parse_qs(parsed_url.query)["v"][0]
+    video_id = extract.video_id(url.url)
     transcript = await fetch_transcript(video_id)
-    try:
-        responses = send(prompt=f"generate study material for the given text: ", text_data=transcript)
-        parsed_responses = []
+    responses = send(prompt=f"generate study material for the given text: ", text_data=transcript)
+    parsed_responses = []
 
-        for response in responses:
-            parsed_response = json.loads(response)
-            parsed_responses.append(parsed_response)
-    except:
-        parsed_responses = []
+    for response in responses:
+        parsed_response = json.loads(response)
+        parsed_responses.append(parsed_response)
     return parsed_responses
 
 if __name__ == "__main__":
