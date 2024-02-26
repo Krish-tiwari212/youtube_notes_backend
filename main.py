@@ -4,10 +4,7 @@ import uvicorn
 from fastapi import FastAPI
 from youtube_transcript_api import YouTubeTranscriptApi
 from pydantic import BaseModel
-from urllib.parse import urlparse
-from urllib.parse import parse_qs
 from dotenv import load_dotenv
-import google.generativeai as genai
 import json
 from response import send
 from fastapi.middleware.cors import CORSMiddleware
