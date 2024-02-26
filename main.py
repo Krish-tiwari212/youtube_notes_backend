@@ -10,8 +10,11 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 import json
 from response import send
+from fastapi.middleware.cors import CORSMiddleware
+
 
 load_dotenv()
+
 
 
 async def fetch_transcript(video_id: str) -> str:
@@ -115,6 +118,14 @@ class Url(BaseModel):
 
 app = FastAPI()
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 @app.get("/")
 async def root():
