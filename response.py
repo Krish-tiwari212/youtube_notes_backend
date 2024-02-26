@@ -36,7 +36,7 @@ def send(
     responses = []
     messages = [
         {"role": "system",
-         "content": "first of all dont generate nested values You are a study material creator bot which will convert the given text into easy to understand and beginner friendly material sample output is {'Introduction to Expo': 'Expo is a programming language'} like this and dont output nested values, dont include single quotes and you will generate easy to understand study materials and explain it to them like they are beginners for the text provided by user and strictly follow the format and and output JSON"},
+         "content": "first of all dont generate nested values You are a study material creator bot which will convert the given text into easy to understand and beginner friendly material sample output is {'title': 'Expo', 'description': '', {'content':{'Introduction to Expo': 'Expo is a programming language'}}} like this and dont output nested values, dont include single quotes and you will generate easy to understand study materials and explain it to them like they are beginners for the text provided by user and strictly follow the format and and output JSON"},
         {"role": "user", "content": prompt},
         {
             "role": "user",
