@@ -1,5 +1,6 @@
 import os
 
+import uvicorn
 from fastapi import FastAPI
 from youtube_transcript_api import YouTubeTranscriptApi
 from pydantic import BaseModel
